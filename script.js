@@ -1,4 +1,4 @@
-// Default Activities List
+// DEFAULT ACTIVITIES LIST
 
 const Activities = [
     "Go for a walk",
@@ -31,9 +31,23 @@ const Activities = [
     "Go to a amusement park"
 ];
 
-let custom = true; // True when custom activities is created.
+/* ============================================================ */
 
-// Custom activites 
+// SELECT RANDOM VALUE FUNCTION ~ Select Random Value from Array. 
+
+const selectRandomValue = (arr) => {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    const value = arr[randomIndex];
+
+    return value;
+}
+
+/* ============================================================ */
+
+let custom = false; // True when custom activities is created.
+
+// CUSTOM ACTIVITIES
+
 const customActivites = {
     activities: { // Activities object
         list: [], // List of activities
@@ -67,15 +81,10 @@ const customActivites = {
     }
 }
 
-// Select Random Value ~ Select Random Value from Array. 
-const selectRandomValue = (arr) => {
-    const randomIndex = Math.floor(Math.random() * arr.length);
-    const value = arr[randomIndex];
+/* ====================================================== */
 
-    return value;
-}
+// SELECT RANDOM ACTIVITY
 
-// Select Random Activity
 const selectRandomActivity = () => {
     // Return a object with a random activity from default Activites if there are no custom lists - no friend selected by default
     if (!custom) {
