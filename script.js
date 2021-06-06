@@ -35,9 +35,36 @@ let custom = true; // True when custom activities is created.
 
 // Custom activites 
 const customActivites = {
-    activities: [], // activites list
-    people: [], // friends/family list 
-    withPeople: false
+    activities: { // Activities object
+        list: [], // List of activities
+        // setter function
+        set activity(activity) {
+            if (typeof activity === "string") {
+                this.list.push(activity);
+            }
+        },
+        removeActivity(activity) {
+            this.list = this.list.filter(item => item !== activity);
+        }
+    },
+    friends: { // Friends Object
+        list: [], // List of friends
+
+        set friend(friend) { // Setter
+            if (typeof friend === "string") {
+                this.list.push(friend);
+            }
+        },
+        removeFriend(friend) {
+            this.list = this.list.filter(item => item !== friend);
+        }
+    }, 
+    withPeople: false, // Add a friend boolean (if true will pick a friend from friends list)
+    set setWithPeople(bool) { // Setter
+        if (typeof bool === "boolean") {
+            this.withPeople = bool;
+        }
+    }
 }
 
 // Select Random Value ~ Select Random Value from Array. 
@@ -61,14 +88,14 @@ const selectRandomActivity = () => {
     // Return a object with a random activity from customActivites and a random friend from customActivities
     if (customActivites.withPeople) {
         return {
-            activity: selectRandomValue(customActivites.activities),
-            friend: selectRandomValue(customActivites.people)
+            activity: selectRandomValue(customActivites.activities.list),
+            friend: selectRandomValue(customActivites.friends.list)
         }
     }
 
     // Return a object with a random activity from customActivites - no friend selected
     return {
-        activity: selectRandomValue(customActivites.activities),
+        activity: selectRandomValue(customActivites.activities.list),
         friend: null
     }
 }
