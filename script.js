@@ -42,9 +42,11 @@ const customActivites = {
     people: [] // friends/family list 
 }
 
-const selectRandomActivity = () => {
-    const randomIndex = Math.floor(Math.random() * Activities.length);
-    const activity = Activities[randomIndex];
+// Select Random Activity function ~ default parameter = 'Activites' list 
+const selectRandomActivity = (activities = Activities) => {
+    const randomIndex = Math.floor(Math.random() * activities.length);
+    const activity = activities[randomIndex];
 
     return activity;
 }
+
