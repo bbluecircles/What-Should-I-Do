@@ -31,15 +31,13 @@ const Activities = [
     "Go to a amusement park"
 ];
 
+let custom = true; // True when custom activities is created.
+
 // Custom activites 
 const customActivites = {
-    activities: [
-        {
-            activity: null, // activity
-            withPeople: false // include a friend option (will select random person from people list)
-        }
-    ], // activity list
-    people: [] // friends/family list 
+    activities: [], // activites list
+    people: [], // friends/family list 
+    withPeople: false
 }
 
 // Select Random Value ~ Select Random Value from Array. 
@@ -48,4 +46,29 @@ const selectRandomValue = (arr) => {
     const value = arr[randomIndex];
 
     return value;
+}
+
+// Select Random Activity
+const selectRandomActivity = () => {
+    // Return a object with a random activity from default Activites if there are no custom lists - no friend selected by default
+    if (!custom) {
+        return {
+            activity: selectRandomValue(Activities),
+            friend: null
+        }
+    }
+
+    // Return a object with a random activity from customActivites and a random friend from customActivities
+    if (customActivites.withPeople) {
+        return {
+            activity: selectRandomValue(customActivites.activities),
+            friend: selectRandomValue(customActivites.people)
+        }
+    }
+
+    // Return a object with a random activity from customActivites - no friend selected
+    return {
+        activity: selectRandomValue(customActivites.activities),
+        friend: null
+    }
 }
